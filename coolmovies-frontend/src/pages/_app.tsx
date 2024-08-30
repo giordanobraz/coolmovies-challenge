@@ -6,9 +6,13 @@ import Head from "next/head";
 import { createStore } from "../redux";
 import { EnhancedStore } from "@reduxjs/toolkit";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "../styles/theme";
+import Layout from "../components/Layout";
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [store, setStore] = useState<EnhancedStore | null>(null);
+
   React.useEffect(() => {
     const client = new ApolloClient({
       cache: new InMemoryCache(),
@@ -18,7 +22,11 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     const store = createStore({ epicDependencies: { client } });
     setStore(store);
   }, []);
-  if (!store) return <>{"Loading..."}</>;
+
+  if (!store) {
+    return <>{"Loading..."}</>;
+  }
+
   return (
     <>
       <Head>
@@ -28,7 +36,11 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <ReduxProvider store={store}>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </ReduxProvider>
     </>
   );
