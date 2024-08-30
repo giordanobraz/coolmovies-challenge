@@ -12,5 +12,8 @@ module.exports = {
       },
     ];
   },
+  images: {
+    domains: ["upload.wikimedia.org", "images-na.ssl-images-amazon.com"],
+  },
   reactStrictMode: true,
 };
