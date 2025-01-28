@@ -1,3 +1,5 @@
+Just another challenge that I got ghosted :)
+
 - [Introduction: Coolmovies challenge](#introduction-coolmovies-challenge)
 - [Web version challenge](#web-version-challenge)
 - [Mobile version challenge](#mobile-version-challenge)
